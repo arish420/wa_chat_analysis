@@ -1,6 +1,6 @@
 # dependencies
 import pandas as pd
-import streamlit as slt
+import streamlit as st
 import matplotlib.pyplot as plt
 from collections import Counter
 import seaborn as sns
