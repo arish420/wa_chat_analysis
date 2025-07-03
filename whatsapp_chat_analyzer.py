@@ -302,7 +302,7 @@ def preprocessing(uploaded_file):
 	df['Minutes']=df['Date and Time'].dt.minute
 	df['Month No']=df['Date and Time'].dt.month
 	# df['Date']=df['Date and Time'].dt.date
-	# df['Day']=df['Date and Time'].dt.day_name()
+	df['Day']=df['Date and Time'].dt.day_name()
 	slt.write(df)
 	return df
 #application title
