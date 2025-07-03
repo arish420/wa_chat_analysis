@@ -88,191 +88,191 @@ def user_purification(user_lst):
 	users=[item for item in users if "You were added" not in str(item).strip()]
 	return users
 
-# #method for finding hourly timeline
-# def Hourly_Timeline(user_type,my_df):
-# 	slt.subheader(user_type+" Hourly Timeline")
-# 	if user_type !='Over All':
-# 		my_df=my_df[my_df['User'].str.strip()==user_type]
-# 	period=[]
-# 	for hour in my_df[['Day','Hour']]['Hour']:
-# 		if hour==23:
-# 			period.append(str(hour)+"-"+str('00'))
-# 		elif hour==0:
-# 			period.append(str('00')+"-"+str(hour+1))
-# 		else:
-# 			period.append(str(hour)+"-"+str(hour+1))
-# 	my_df['Period']=period
-# 	hrly_heatmap=my_df.pivot_table(index='Day',columns='Period',values='Message',aggfunc='count').fillna(0)
-# 	fig,ax=plt.subplots()
-# 	ax=sns.heatmap(hrly_heatmap)
-# 	slt.pyplot(fig)
-# #method for finding weekly and monthly timelines
-# def wkly_mnthly_timeline(user_type,my_df):
-# 	if user_type!='Over All':
-# 		my_df=my_df[my_df['User'].str.strip()==user_type]
-# 	col1,col2=slt.columns(2)
-# 	with col1:
-# 		slt.subheader(user_type+" Weekly Timeline")
-# 		w_timeline=my_df['Day'].value_counts()
-# 		x=w_timeline.index
-# 		y=w_timeline.values
-# 		fig,ax=plt.subplots()
-# 		ax.pie(y,labels=x,autopct="%0.2f")
-# 		plt.xticks(rotation='vertical')
-# 		slt.pyplot(fig)
-# 	with col2:
-# 		slt.subheader(user_type+" Monthly Timeline")
-# 		m_timeline=my_df['Month'].value_counts()
-# 		x1=m_timeline.index
-# 		y1=m_timeline.values
-# 		fig,ax=plt.subplots()
-# 		ax.bar(x1,y1,color='violet')
-# 		plt.xticks(rotation='vertical')
-# 		slt.pyplot(fig)
+#method for finding hourly timeline
+def Hourly_Timeline(user_type,my_df):
+	slt.subheader(user_type+" Hourly Timeline")
+	if user_type !='Over All':
+		my_df=my_df[my_df['User'].str.strip()==user_type]
+	period=[]
+	for hour in my_df[['Day','Hour']]['Hour']:
+		if hour==23:
+			period.append(str(hour)+"-"+str('00'))
+		elif hour==0:
+			period.append(str('00')+"-"+str(hour+1))
+		else:
+			period.append(str(hour)+"-"+str(hour+1))
+	my_df['Period']=period
+	hrly_heatmap=my_df.pivot_table(index='Day',columns='Period',values='Message',aggfunc='count').fillna(0)
+	fig,ax=plt.subplots()
+	ax=sns.heatmap(hrly_heatmap)
+	slt.pyplot(fig)
+#method for finding weekly and monthly timelines
+def wkly_mnthly_timeline(user_type,my_df):
+	if user_type!='Over All':
+		my_df=my_df[my_df['User'].str.strip()==user_type]
+	col1,col2=slt.columns(2)
+	with col1:
+		slt.subheader(user_type+" Weekly Timeline")
+		w_timeline=my_df['Day'].value_counts()
+		x=w_timeline.index
+		y=w_timeline.values
+		fig,ax=plt.subplots()
+		ax.pie(y,labels=x,autopct="%0.2f")
+		plt.xticks(rotation='vertical')
+		slt.pyplot(fig)
+	with col2:
+		slt.subheader(user_type+" Monthly Timeline")
+		m_timeline=my_df['Month'].value_counts()
+		x1=m_timeline.index
+		y1=m_timeline.values
+		fig,ax=plt.subplots()
+		ax.bar(x1,y1,color='violet')
+		plt.xticks(rotation='vertical')
+		slt.pyplot(fig)
 
-# #method for finding daily timeline
-# def daily_timeline(user_type,my_df):
-# 	slt.subheader(user_type+" Daily Timeline")
-# 	if user_type!='Over All':
-# 		my_df=my_df[my_df['User'].str.strip()==user_type]
+#method for finding daily timeline
+def daily_timeline(user_type,my_df):
+	slt.subheader(user_type+" Daily Timeline")
+	if user_type!='Over All':
+		my_df=my_df[my_df['User'].str.strip()==user_type]
 
-# 	d_timeline=my_df.groupby(['Date']).count()['Message'].reset_index()
-# 	fig,ax=plt.subplots()
-# 	ax.plot(d_timeline['Date'],d_timeline['Message'],color='orange')
-# 	plt.xticks(rotation='vertical')
-# 	slt.pyplot(fig)
+	d_timeline=my_df.groupby(['Date']).count()['Message'].reset_index()
+	fig,ax=plt.subplots()
+	ax.plot(d_timeline['Date'],d_timeline['Message'],color='orange')
+	plt.xticks(rotation='vertical')
+	slt.pyplot(fig)
 		
-# #method for finding monthly timeline
-# def monthly_timeline(user_type,my_df):
-# 	slt.subheader(user_type+" Monthly Timeline")
-# 	if user_type!='Over All':
-# 		my_df=my_df[my_df['User'].str.strip()==user_type]
+#method for finding monthly timeline
+def monthly_timeline(user_type,my_df):
+	slt.subheader(user_type+" Monthly Timeline")
+	if user_type!='Over All':
+		my_df=my_df[my_df['User'].str.strip()==user_type]
 
-# 	m_timeline=my_df.groupby(['Year','Month No','Month']).count()['Message'].reset_index()
-# 	timeline_data=[]
-# 	for time  in range(m_timeline.shape[0]):
-# 	    timeline_data.append(m_timeline['Month'][time]+" - "+str(m_timeline['Year'][time]))
-# 	m_timeline['By Year & Month']=timeline_data
+	m_timeline=my_df.groupby(['Year','Month No','Month']).count()['Message'].reset_index()
+	timeline_data=[]
+	for time  in range(m_timeline.shape[0]):
+	    timeline_data.append(m_timeline['Month'][time]+" - "+str(m_timeline['Year'][time]))
+	m_timeline['By Year & Month']=timeline_data
 
-# 	fig,ax=plt.subplots()
-# 	ax.plot(m_timeline['By Year & Month'],m_timeline['Message'],color='red')
-# 	plt.xticks(rotation='vertical')
-# 	slt.pyplot(fig)
-# #method for finding shared emoji
-# def num_of_emojis(user_type,my_df):
+	fig,ax=plt.subplots()
+	ax.plot(m_timeline['By Year & Month'],m_timeline['Message'],color='red')
+	plt.xticks(rotation='vertical')
+	slt.pyplot(fig)
+#method for finding shared emoji
+def num_of_emojis(user_type,my_df):
 	
-# 	temp=my_df[my_df['Message'].str.strip()!='<Media omitted>']
-# 	temp.dropna(inplace=True)
-# 	if user_type!='Over All':
-# 		temp=temp[temp['User'].str.strip()==user_type]
+	temp=my_df[my_df['Message'].str.strip()!='<Media omitted>']
+	temp.dropna(inplace=True)
+	if user_type!='Over All':
+		temp=temp[temp['User'].str.strip()==user_type]
 
-# 	import emoji
-# 	emojis=[]
-# 	for message in temp['Message']:
-# 		emojis.extend([emoji_code for emoji_code in message if emoji_code in emoji.UNICODE_EMOJI['en']])
-# 	emoji_df=pd.DataFrame(Counter(emojis).most_common(20))
-# 	emoji_df.columns=['Emoji','Frequency']
-# 	col1,col2=slt.columns(2)
-# 	with col1:
-# 		slt.subheader(user_type+" Emojis Shared")
-# 		slt.dataframe(emoji_df)
-# 	with col2:
-# 		slt.subheader(user_type+" Emojis Percentages")
-# 		fig,ax=plt.subplots()
-# 		ax.pie(emoji_df['Frequency'].head(),labels=emoji_df['Emoji'].head(),autopct="%0.2f")
-# 		plt.xticks(rotation='vertical')
-# 		slt.pyplot(fig)
+	import emoji
+	emojis=[]
+	for message in temp['Message']:
+		emojis.extend([emoji_code for emoji_code in message if emoji_code in emoji.UNICODE_EMOJI['en']])
+	emoji_df=pd.DataFrame(Counter(emojis).most_common(20))
+	emoji_df.columns=['Emoji','Frequency']
+	col1,col2=slt.columns(2)
+	with col1:
+		slt.subheader(user_type+" Emojis Shared")
+		slt.dataframe(emoji_df)
+	with col2:
+		slt.subheader(user_type+" Emojis Percentages")
+		fig,ax=plt.subplots()
+		ax.pie(emoji_df['Frequency'].head(),labels=emoji_df['Emoji'].head(),autopct="%0.2f")
+		plt.xticks(rotation='vertical')
+		slt.pyplot(fig)
 
 
-# def most_used_words(user_type,my_df):
-# 	slt.subheader(user_type+"Mostly Used Words")
-# 	temp=my_df[my_df['Message'].str.strip()!='<Media omitted>']
-# 	temp.dropna(inplace=True)
-# 	stop_words=open('stop_hinglish.txt','r')
-# 	removed_stops=[]
-# 	if user_type!='Over All':
-# 		temp=temp[temp['User'].str.strip()==user_type]
-# 	for message in temp['Message']:
-# 	    for word in message.lower().split(): #to split message into tokens
-# 		if word not in stop_words:
-# 		    removed_stops.append(word)
+def most_used_words(user_type,my_df):
+	slt.subheader(user_type+"Mostly Used Words")
+	temp=my_df[my_df['Message'].str.strip()!='<Media omitted>']
+	temp.dropna(inplace=True)
+	stop_words=open('stop_hinglish.txt','r')
+	removed_stops=[]
+	if user_type!='Over All':
+		temp=temp[temp['User'].str.strip()==user_type]
+	for message in temp['Message']:
+	    for word in message.lower().split(): #to split message into tokens
+		if word not in stop_words:
+		    removed_stops.append(word)
 
-# 	most_common_words=pd.DataFrame(Counter(removed_stops).most_common(20))
-# 	most_common_words.columns=['Word','Frequency']
-# 	fig,ax=plt.subplots()
-# 	ax.barh(most_common_words['Word'],most_common_words['Frequency'],color='black')
-# 	plt.xticks(rotation='vertical')
-# 	slt.pyplot(fig)
-# #method for finding busy users
-# def  busy_users(user_type,my_df):
-# 	if user_type!='Over All':
-# 		my_df=my_df[my_df['User'].str.strip()==user_type]
+	most_common_words=pd.DataFrame(Counter(removed_stops).most_common(20))
+	most_common_words.columns=['Word','Frequency']
+	fig,ax=plt.subplots()
+	ax.barh(most_common_words['Word'],most_common_words['Frequency'],color='black')
+	plt.xticks(rotation='vertical')
+	slt.pyplot(fig)
+#method for finding busy users
+def  busy_users(user_type,my_df):
+	if user_type!='Over All':
+		my_df=my_df[my_df['User'].str.strip()==user_type]
 	
-# 	busy=my_df['User'].value_counts().head()
-# 	x=busy.index
-# 	y=busy.values
-# 	fig,ax=plt.subplots()
-# 	col1,col2=slt.columns(2)
-# 	with col1:
-# 		slt.subheader(user_type+" Busiest Timeline")
-# 		ax.bar(x,y,color='green')
-# 		plt.xticks(rotation='vertical')
-# 		slt.pyplot(fig)
-# 	with col2:
-# 		slt.subheader(user_type+" Busiest Percentages")
-# 		percentages=round(my_df['User'].value_counts()/my_df.shape[0]*100,2).reset_index().rename(columns={'index':'Name','User':'Percent'})
-# 		slt.dataframe(percentages)
+	busy=my_df['User'].value_counts().head()
+	x=busy.index
+	y=busy.values
+	fig,ax=plt.subplots()
+	col1,col2=slt.columns(2)
+	with col1:
+		slt.subheader(user_type+" Busiest Timeline")
+		ax.bar(x,y,color='green')
+		plt.xticks(rotation='vertical')
+		slt.pyplot(fig)
+	with col2:
+		slt.subheader(user_type+" Busiest Percentages")
+		percentages=round(my_df['User'].value_counts()/my_df.shape[0]*100,2).reset_index().rename(columns={'index':'Name','User':'Percent'})
+		slt.dataframe(percentages)
 
-# #method for finding shared links
-# def links_shared(user_type,my_df):
-# 	slt.write("Shared Links")
-# 	if user_type=='Over All':
+#method for finding shared links
+def links_shared(user_type,my_df):
+	slt.write("Shared Links")
+	if user_type=='Over All':
 		
-# 		from urlextract import URLExtract
-# 		url_extractor=URLExtract()
-# 		urls=[]
-# 		for link in my_df['Message']:
-# 			urls.extend(url_extractor.find_urls(str(link)))
-# 		return len(urls)
+		from urlextract import URLExtract
+		url_extractor=URLExtract()
+		urls=[]
+		for link in my_df['Message']:
+			urls.extend(url_extractor.find_urls(str(link)))
+		return len(urls)
 
-# #methods for finding count of shared media items
-# def  count_of_media(user_type,my_df):
-# 	slt.write("Shared Media")
-# 	if user_type=='Over All':
-# 		num_of_media=my_df[my_df['Message'].str.strip()=='<Media omitted>'].shape[0]
-# 		return num_of_media
-# 	else:
-# 		num_of_media_df=my_df[my_df['User']==user_type]
-# 		num_of_media=num_of_media_df[num_of_media_df['Message'].str.strip()=='<Media omitted>'].shape[0]
-# 	return num_of_media
+#methods for finding count of shared media items
+def  count_of_media(user_type,my_df):
+	slt.write("Shared Media")
+	if user_type=='Over All':
+		num_of_media=my_df[my_df['Message'].str.strip()=='<Media omitted>'].shape[0]
+		return num_of_media
+	else:
+		num_of_media_df=my_df[my_df['User']==user_type]
+		num_of_media=num_of_media_df[num_of_media_df['Message'].str.strip()=='<Media omitted>'].shape[0]
+	return num_of_media
 
-# #method for finding count of words
-# def count_of_words(user_type,my_df):
-# 	slt.write("Words Used")
-# 	if user_type=='Over All':
-# 		words=[]
-# 		for w in my_df['Message']:
-# 			if w is not None:
-# 				words.extend(str(w).split())
-# 		return len(words)
-# 	else:
-# 		num_of_word=my_df[my_df['User']==user_type]
-# 		words=[]
-# 		for w in num_of_word['Message']:
-# 			if w is not None:
-# 				words.extend(str(w).split())
-# 		return len(words)
-# #methd for finding count of messages
-# def count_of_messages(user_type,my_df):
-# 	slt.write("Shared Messages")
+#method for finding count of words
+def count_of_words(user_type,my_df):
+	slt.write("Words Used")
+	if user_type=='Over All':
+		words=[]
+		for w in my_df['Message']:
+			if w is not None:
+				words.extend(str(w).split())
+		return len(words)
+	else:
+		num_of_word=my_df[my_df['User']==user_type]
+		words=[]
+		for w in num_of_word['Message']:
+			if w is not None:
+				words.extend(str(w).split())
+		return len(words)
+#methd for finding count of messages
+def count_of_messages(user_type,my_df):
+	slt.write("Shared Messages")
 
 
-# 	if user_type=='Over All':
-# 		num_of_messages=my_df['User'].shape[0]
-# 		return num_of_messages
-# 	else:
-# 		num_of_messages=my_df[my_df['User']==user_type].shape[0]
-# 		return num_of_messages
+	if user_type=='Over All':
+		num_of_messages=my_df['User'].shape[0]
+		return num_of_messages
+	else:
+		num_of_messages=my_df[my_df['User']==user_type].shape[0]
+		return num_of_messages
 
 #data preprocessing
 def preprocessing(uploaded_file):
@@ -327,11 +327,11 @@ if slt.button("Process") & flag==1:
 		slt.subheader(count_of_media(u_type,result_df))
 	with col4:
 		slt.subheader(links_shared(u_type,result_df))
-	# wkly_mnthly_timeline(u_type,result_df)
-	# busy_users(u_type,result_df)
-	# Hourly_Timeline(u_type,result_df)
-	# most_used_words(u_type,result_df)
-	# num_of_emojis(u_type,result_df)
-	# monthly_timeline(u_type,result_df)
-	# daily_timeline(u_type,result_df)
+	wkly_mnthly_timeline(u_type,result_df)
+	busy_users(u_type,result_df)
+	Hourly_Timeline(u_type,result_df)
+	most_used_words(u_type,result_df)
+	num_of_emojis(u_type,result_df)
+	monthly_timeline(u_type,result_df)
+	daily_timeline(u_type,result_df)
 	# sentiment(u_type,result_df)
