@@ -303,7 +303,7 @@ def preprocessing(uploaded_file):
 	# df['Month No']=df['Date and Time'].dt.month
 	# df['Date']=df['Date and Time'].dt.date
 	# df['Day']=df['Date and Time'].dt.day_name()
-	st.write(df)
+	slt.write(df)
 	return df
 #application title
 slt.title("Whatsapp Chat Analyzer")
