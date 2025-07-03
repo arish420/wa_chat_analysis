@@ -1,6 +1,6 @@
 # dependencies
 import pandas as pd
-import streamlit as st
+import streamlit as slt
 import matplotlib.pyplot as plt
 from collections import Counter
 import seaborn as sns
@@ -11,7 +11,7 @@ import os
 
 
 
-st.title("AI WhatsApp Chat Analysis and Bot")
+slt.title("AI WhatsApp Chat Analysis and Bot")
 
 
 
