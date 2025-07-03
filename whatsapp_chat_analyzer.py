@@ -294,6 +294,7 @@ def preprocessing(uploaded_file):
 	message_split.columns=['User','Message']
 	frames=[into_df,message_split]
 	df=pd.concat(frames,axis=1)
+	df['Date and Time']=pd.to_datetime(df['Date and Time'])
 	df['Year']=df['Date and Time'].dt.year
 	df['Month']=df['Date and Time'].dt.month_name()
 	df['Day']=df['Date and Time'].dt.day
