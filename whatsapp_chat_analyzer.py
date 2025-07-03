@@ -184,25 +184,25 @@ def num_of_emojis(user_type,my_df):
 		slt.pyplot(fig)
 
 
-def most_used_words(user_type,my_df):
-	slt.subheader(user_type+"Mostly Used Words")
-	temp=my_df[my_df['Message'].str.strip()!='<Media omitted>']
-	temp.dropna(inplace=True)
-	stop_words=open('stop_hinglish.txt','r')
-	removed_stops=[]
-	if user_type!='Over All':
-		temp=temp[temp['User'].str.strip()==user_type]
-	for message in temp['Message']:
-	    	for word in message.lower().split(): #to split message into tokens
-			if word not in stop_words:
-		    		removed_stops.append(word)
+# def most_used_words(user_type,my_df):
+# 	slt.subheader(user_type+"Mostly Used Words")
+# 	temp=my_df[my_df['Message'].str.strip()!='<Media omitted>']
+# 	temp.dropna(inplace=True)
+# 	stop_words=open('stop_hinglish.txt','r')
+# 	removed_stops=[]
+# 	if user_type!='Over All':
+# 		temp=temp[temp['User'].str.strip()==user_type]
+# 	for message in temp['Message']:
+# 	    	for word in message.lower().split(): #to split message into tokens
+# 			if word not in stop_words:
+# 		    		removed_stops.append(word)
 
-	most_common_words=pd.DataFrame(Counter(removed_stops).most_common(20))
-	most_common_words.columns=['Word','Frequency']
-	fig,ax=plt.subplots()
-	ax.barh(most_common_words['Word'],most_common_words['Frequency'],color='black')
-	plt.xticks(rotation='vertical')
-	slt.pyplot(fig)
+# 	most_common_words=pd.DataFrame(Counter(removed_stops).most_common(20))
+# 	most_common_words.columns=['Word','Frequency']
+# 	fig,ax=plt.subplots()
+# 	ax.barh(most_common_words['Word'],most_common_words['Frequency'],color='black')
+# 	plt.xticks(rotation='vertical')
+# 	slt.pyplot(fig)
 #method for finding busy users
 def  busy_users(user_type,my_df):
 	if user_type!='Over All':
