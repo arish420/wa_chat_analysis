@@ -294,7 +294,7 @@ def preprocessing(uploaded_file):
 	message_split.columns=['User','Message']
 	frames=[into_df,message_split]
 	df=pd.concat(frames,axis=1)
-	# df['Date and Time']=pd.to_datetime(df['Date and Time'])
+	df['Date and Time']=pd.to_datetime(df['Date and Time'])
 	# df['Year']=df['Date and Time'].dt.year
 	# df['Month']=df['Date and Time'].dt.month_name()
 	# df['Day']=df['Date and Time'].dt.day
@@ -303,6 +303,7 @@ def preprocessing(uploaded_file):
 	# df['Month No']=df['Date and Time'].dt.month
 	# df['Date']=df['Date and Time'].dt.date
 	# df['Day']=df['Date and Time'].dt.day_name()
+	st.write(df)
 	return df
 #application title
 slt.title("Whatsapp Chat Analyzer")
