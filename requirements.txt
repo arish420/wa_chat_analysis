@@ -4,6 +4,7 @@ langchain-community
 pypdf
 seaborn
 nltk
+urlextract
 wordcloud
 torch
 openpyxl
