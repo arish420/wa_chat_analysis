@@ -274,62 +274,62 @@ st.title("AI WhatsApp Chat Analysis and Bot")
 # 		num_of_messages=my_df[my_df['User']==user_type].shape[0]
 # 		return num_of_messages
 
-# #data preprocessing
-# def preprocessing(uploaded_file):
-# 	raw_text=uploaded_file.getvalue().decode('utf-8')
-# 	new_data=raw_text.split("\n")
-# 	splitted_data=[(i.split(" - ")) for i in new_data]
-# 	for i, j in enumerate(splitted_data):
-# 		if len(j) == 1:
-# 			prev_rec = splitted_data[i-1]
-# 			splitted_data[i] = list([prev_rec[0], j])
-# 	into_df=pd.DataFrame(splitted_data)
-# 	into_df.drop(into_df.columns[[2]],axis=1,inplace=True)
-# 	into_df.iloc[:,0]=pd.to_datetime(into_df.iloc[:,0],  errors='coerce')
-# 	into_df.columns=['Date and Time','Message']
-# 	into_df= into_df[into_df['Date and Time'].apply(lambda x: len(str(x))<= 20)]
-# 	message_split=into_df['Message'].str.split(":",expand=True)
-# 	message_split.drop(message_split.columns[2:],axis=1,inplace=True)
-# 	into_df.drop(into_df.columns[[1]],axis=1,inplace=True)
-# 	message_split.columns=['User','Message']
-# 	frames=[into_df,message_split]
-# 	df=pd.concat(frames,axis=1)
-# 	df['Year']=df['Date and Time'].dt.year
-# 	df['Month']=df['Date and Time'].dt.month_name()
-# 	df['Day']=df['Date and Time'].dt.day
-# 	df['Hour']=df['Date and Time'].dt.hour
-# 	df['Minutes']=df['Date and Time'].dt.minute
-# 	df['Month No']=df['Date and Time'].dt.month
-# 	df['Date']=df['Date and Time'].dt.date
-# 	df['Day']=df['Date and Time'].dt.day_name()
-# 	return df
-# #application title
-# slt.title("Whatsapp Chat Analyzer")
-# flag=0
-# file=slt.file_uploader("Import File",type=['txt'])
-# if file is not None:
-# 	result_df=preprocessing(file)
-# 	flag=1
-# 	user_list=result_df['User'].unique().tolist()
-# 	user_list=user_purification(user_list)
-# 	user_list.insert(0,"Over All")
-# 	u_type=slt.selectbox("Choose",user_list)
-# col1,col2,col3,col4=slt.columns(4)
+#data preprocessing
+def preprocessing(uploaded_file):
+	raw_text=uploaded_file.getvalue().decode('utf-8')
+	new_data=raw_text.split("\n")
+	splitted_data=[(i.split(" - ")) for i in new_data]
+	for i, j in enumerate(splitted_data):
+		if len(j) == 1:
+			prev_rec = splitted_data[i-1]
+			splitted_data[i] = list([prev_rec[0], j])
+	into_df=pd.DataFrame(splitted_data)
+	into_df.drop(into_df.columns[[2]],axis=1,inplace=True)
+	into_df.iloc[:,0]=pd.to_datetime(into_df.iloc[:,0],  errors='coerce')
+	into_df.columns=['Date and Time','Message']
+	into_df= into_df[into_df['Date and Time'].apply(lambda x: len(str(x))<= 20)]
+	message_split=into_df['Message'].str.split(":",expand=True)
+	message_split.drop(message_split.columns[2:],axis=1,inplace=True)
+	into_df.drop(into_df.columns[[1]],axis=1,inplace=True)
+	message_split.columns=['User','Message']
+	frames=[into_df,message_split]
+	df=pd.concat(frames,axis=1)
+	df['Year']=df['Date and Time'].dt.year
+	df['Month']=df['Date and Time'].dt.month_name()
+	df['Day']=df['Date and Time'].dt.day
+	df['Hour']=df['Date and Time'].dt.hour
+	df['Minutes']=df['Date and Time'].dt.minute
+	df['Month No']=df['Date and Time'].dt.month
+	df['Date']=df['Date and Time'].dt.date
+	df['Day']=df['Date and Time'].dt.day_name()
+	return df
+#application title
+slt.title("Whatsapp Chat Analyzer")
+flag=0
+file=slt.file_uploader("Import File",type=['txt'])
+if file is not None:
+	result_df=preprocessing(file)
+	flag=1
+	user_list=result_df['User'].unique().tolist()
+	user_list=user_purification(user_list)
+	user_list.insert(0,"Over All")
+	u_type=slt.selectbox("Choose",user_list)
+col1,col2,col3,col4=slt.columns(4)
 
-# if slt.button("Process") & flag==1:
-# 	with col1:
-# 		slt.subheader(count_of_messages(u_type,result_df))
-# 	with col2:
-# 		slt.subheader(count_of_words(u_type,result_df))
-# 	with col3:
-# 		slt.subheader(count_of_media(u_type,result_df))
-# 	with col4:
-# 		slt.subheader(links_shared(u_type,result_df))
-# 	wkly_mnthly_timeline(u_type,result_df)
-# 	busy_users(u_type,result_df)
-# 	Hourly_Timeline(u_type,result_df)
-# 	most_used_words(u_type,result_df)
-# 	num_of_emojis(u_type,result_df)
-# 	monthly_timeline(u_type,result_df)
-# 	daily_timeline(u_type,result_df)
-# 	sentiment(u_type,result_df)
+if slt.button("Process") & flag==1:
+	with col1:
+		slt.subheader(count_of_messages(u_type,result_df))
+	with col2:
+		slt.subheader(count_of_words(u_type,result_df))
+	with col3:
+		slt.subheader(count_of_media(u_type,result_df))
+	with col4:
+		slt.subheader(links_shared(u_type,result_df))
+	wkly_mnthly_timeline(u_type,result_df)
+	busy_users(u_type,result_df)
+	Hourly_Timeline(u_type,result_df)
+	most_used_words(u_type,result_df)
+	num_of_emojis(u_type,result_df)
+	monthly_timeline(u_type,result_df)
+	daily_timeline(u_type,result_df)
+	sentiment(u_type,result_df)
