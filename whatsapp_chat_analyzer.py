@@ -79,14 +79,14 @@ slt.title("AI WhatsApp Chat Analysis and Bot")
 
 
 
-# # method for separating sender from message text
-# def user_purification(user_lst):
-# 	users=[item for item in user_lst if len(str(item))<=24]
-# 	users=[item for item in users if not str(item).strip().startswith(('+','0','1','2','3','4','5','6','7','8','9'))]
-# 	users=[item for item in users if "left" not in str(item).strip()]
-# 	users=[item for item in users if "nan" not in str(item).strip()]
-# 	users=[item for item in users if "You were added" not in str(item).strip()]
-# 	return users
+# method for separating sender from message text
+def user_purification(user_lst):
+	users=[item for item in user_lst if len(str(item))<=24]
+	users=[item for item in users if not str(item).strip().startswith(('+','0','1','2','3','4','5','6','7','8','9'))]
+	users=[item for item in users if "left" not in str(item).strip()]
+	users=[item for item in users if "nan" not in str(item).strip()]
+	users=[item for item in users if "You were added" not in str(item).strip()]
+	return users
 
 # #method for finding hourly timeline
 # def Hourly_Timeline(user_type,my_df):
@@ -326,11 +326,11 @@ if slt.button("Process") & flag==1:
 		slt.subheader(count_of_media(u_type,result_df))
 	with col4:
 		slt.subheader(links_shared(u_type,result_df))
-	wkly_mnthly_timeline(u_type,result_df)
-	busy_users(u_type,result_df)
-	Hourly_Timeline(u_type,result_df)
-	most_used_words(u_type,result_df)
-	num_of_emojis(u_type,result_df)
-	monthly_timeline(u_type,result_df)
-	daily_timeline(u_type,result_df)
-	sentiment(u_type,result_df)
+	# wkly_mnthly_timeline(u_type,result_df)
+	# busy_users(u_type,result_df)
+	# Hourly_Timeline(u_type,result_df)
+	# most_used_words(u_type,result_df)
+	# num_of_emojis(u_type,result_df)
+	# monthly_timeline(u_type,result_df)
+	# daily_timeline(u_type,result_df)
+	# sentiment(u_type,result_df)
