@@ -193,9 +193,9 @@ def most_used_words(user_type,my_df):
 	if user_type!='Over All':
 		temp=temp[temp['User'].str.strip()==user_type]
 	for message in temp['Message']:
-	    for word in message.lower().split(): #to split message into tokens
-		if word not in stop_words:
-		    removed_stops.append(word)
+	    	for word in message.lower().split(): #to split message into tokens
+			if word not in stop_words:
+		    		removed_stops.append(word)
 
 	most_common_words=pd.DataFrame(Counter(removed_stops).most_common(20))
 	most_common_words.columns=['Word','Frequency']
