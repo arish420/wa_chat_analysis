@@ -330,7 +330,7 @@ if slt.button("Process") & flag==1:
 	wkly_mnthly_timeline(u_type,result_df)
 	busy_users(u_type,result_df)
 	Hourly_Timeline(u_type,result_df)
-	most_used_words(u_type,result_df)
+	# most_used_words(u_type,result_df)
 	num_of_emojis(u_type,result_df)
 	monthly_timeline(u_type,result_df)
 	daily_timeline(u_type,result_df)
