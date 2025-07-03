@@ -296,11 +296,11 @@ def preprocessing(uploaded_file):
 	df=pd.concat(frames,axis=1)
 	df['Date and Time']=pd.to_datetime(df['Date and Time'])
 	df['Year']=df['Date and Time'].dt.year
-	# df['Month']=df['Date and Time'].dt.month_name()
-	# df['Day']=df['Date and Time'].dt.day
-	# df['Hour']=df['Date and Time'].dt.hour
-	# df['Minutes']=df['Date and Time'].dt.minute
-	# df['Month No']=df['Date and Time'].dt.month
+	df['Month']=df['Date and Time'].dt.month_name()
+	df['Day']=df['Date and Time'].dt.day
+	df['Hour']=df['Date and Time'].dt.hour
+	df['Minutes']=df['Date and Time'].dt.minute
+	df['Month No']=df['Date and Time'].dt.month
 	# df['Date']=df['Date and Time'].dt.date
 	# df['Day']=df['Date and Time'].dt.day_name()
 	slt.write(df)
