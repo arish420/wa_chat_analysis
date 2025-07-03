@@ -151,7 +151,7 @@ def monthly_timeline(user_type,my_df):
 	m_timeline=my_df.groupby(['Year','Month No','Month']).count()['Message'].reset_index()
 	timeline_data=[]
 	for time  in range(m_timeline.shape[0]):
-	    timeline_data.append(m_timeline['Month'][time]+" - "+str(m_timeline['Year'][time]))
+	    	timeline_data.append(m_timeline['Month'][time]+" - "+str(m_timeline['Year'][time]))
 	m_timeline['By Year & Month']=timeline_data
 
 	fig,ax=plt.subplots()
